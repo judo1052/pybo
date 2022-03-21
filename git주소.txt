@@ -1,0 +1,15 @@
+git@github.com:judo1052/pybo.git
+
+https://github.com/judo1052/pybo.git
+
+https://github.com/judo1052/pybo1.git
+
+작업한 내용을 원격 저장소에 저장하는 순서 간단 정리
+
+프로그램 변경 작업하기
+git add <파일명> 또는 git add * 명령 수행하기
+git commit -m "변경사항 요약" 명령 수행하기
+git push 명령 수행하기
+
+퍼블릭 고정IP 주소
+3.38.46.241
