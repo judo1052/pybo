@@ -2,8 +2,6 @@ git@github.com:judo1052/pybo.git
 
 https://github.com/judo1052/pybo.git
 
-https://github.com/judo1052/pybo1.git
-
 작업한 내용을 원격 저장소에 저장하는 순서 간단 정리
 
 프로그램 변경 작업하기
@@ -13,3 +11,52 @@ git push 명령 수행하기
 
 퍼블릭 고정IP 주소
 3.38.46.241
+
+python manage.py runserver 0:8000 --settings=config.settings.prod
+
+
+
+
+server {
+        listen 80;
+        server_name 3.38.46.241;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+
+        location /static {
+                alias /home/ubuntu/projects/mysite/static;
+        }
+
+        location / {
+                include proxy_params;
+                proxy_pass http://unix:/tmp/gunicorn.sock;
+        }
+}
+
+
+
+변경된 프로그램 서버에 적용하기
+
+앞으로 로컬 환경에서 파일 수정 후 서버에 적용하는 일련의 과정들은 이 책에서 생략할 것이다. 하지만 다음의 과정으로 서버에 프로그램을 적용해야 함을 잊지 말자.
+
+먼저 로컬 환경에서 프로그램이 변경되면 다음과 같은 순서로 적용한다
+
+[로컬 환경에서 프로그램이 변경된 경우]
+
+git add *
+git commit -m "수정내용 코멘트"
+git push
+그리고 서버 환경에서 변경된 내용을 다음과 같은 순서로 적용한다.
+
+[서버 환경에서 변경된 내용 적용]
+
+git pull
+sudo systemctl restart gunicorn.service
+
+
+
+
+
+
+
+
